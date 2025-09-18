@@ -79,7 +79,7 @@ If ARG positive UP otherwise DOWN."
 
 ;;;###autoload
 (defun indent-buffer ()
-  "Indent the currently visited buffer."
+  "Indent the current buffer."
   (interactive)
   (indent-region (point-min) (point-max)))
 
@@ -119,7 +119,7 @@ Otherwise, the selected region will be duplicated."
 (defun quote-region ()
   "Quote the selected region."
   (interactive)
-  (save-excursion
+  (save-mark-and-excursion
     (when (region-active-p)
       (insert-pair 1 ?\" ?\"))))
 
@@ -178,6 +178,12 @@ With prefix argument ARG, kill (copy) that many lines from point."
     (if (not filename)
         (message "Buffer %s has no file associated." buffer-name)
       (kill-new filename nil))))
+
+;;;###autoload
+(defun copy-buffer-name (buffer-name)
+  "Copy (`kill-new') BUFFER-NAME."
+  (interactive "bBuffer: ")
+  (kill-new buffer-name nil))
 
 ;;;###autoload
 (defun kill-region-or-backward-word ()
@@ -255,6 +261,6 @@ Or indents the current line."
    ;; default: indent
    (t (indent-according-to-mode))))
 
-(provide 'lex-buffer)
+(provide 'lh-buffer)
 
-;;; lex-buffer.el ends here
+;;; lh-buffer.el ends here

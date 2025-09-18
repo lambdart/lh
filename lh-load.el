@@ -163,6 +163,6 @@ and its dependents."
   ;; load it
   (load-library library))
 
-(provide 'lex-load)
+(provide 'lh-load)
 
-;;; lex-load.el ends here
+;;; lh-load.el ends here

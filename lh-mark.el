@@ -1,4 +1,4 @@
-;;; lex-mark.el --- mark related functions -*- lexical-binding: t -*-
+;;; lh-mark.el --- mark related functions -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart
@@ -73,28 +73,37 @@
            with width = (length (number-to-string max-line-number))
            for m = (format (concat "%" (number-to-string width) "d: %s")
                            (line-number-at-pos mark)
-                           (parse-mark-line-to-string mark))
+                           (string-trim (parse-mark-line-to-string mark)))
            unless (and recip (assoc m recip))
            collect (cons m mark) into recip
            finally return recip))
 
+(defun mark-ring-global-marks ()
+  "Collection of buffer marks."
+  (let ((marks '()))
+    (dolist (buffer (buffer-list) (apply #'append marks))
+      (with-current-buffer buffer
+        (when (not (eq mark-ring nil))
+          (setf marks (cons mark-ring marks)))))))
+
+(defun read-mark (collection)
+  "Read mark from COLLECTION."
+  (if (not collection)
+      (progn (message "Mark ring is empty") nil)
+    (completing-read "Go to mark: " collection nil t)))
+
 ;;;###autoload
-(defun goto-mark ()
-  "Goto selected `mark' position."
+(defun find-local-mark ()
+  "Find mark and jump to it."
   (interactive)
-  (let ((collection (mark-ring-collection))
-        (choice nil))
-    (cond
-     ;; no candidates, logs and leave
-     ((not collection)
-      (message "Mark ring is empty"))
-     ;; default, goto position (char in the buffer)
-     (t
-      ;; select candidate from mark-ring-collection
-      (setq choice (completing-read "Goto: " collection nil t))
-      ;; mark to char and finally go to it!
-      (goto-char (cdr (assoc choice collection)))))))
+  (let* ((collection (mark-ring-collection))
+         (mark-position (read-mark collection)))
+    (cond ((or (not mark-position) (string-empty-p mark-position))
+           (message "Mark not found"))
+          (t (goto-char (cdr (assoc mark-position collection)))))))
 
-(provide 'lex-mark)
+;; TODO: global mark ring
 
-;;; lex-mark.el ends here
+(provide 'lh-mark)
+
+;;; lh-mark.el ends here

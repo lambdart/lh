@@ -1,4 +1,4 @@
-;;; lex-minibuffer.el --- minibuffer related extentions -*- lexical-binding: t -*-
+;;; lh-minibuffer.el --- minibuffer related extentions -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart
@@ -125,6 +125,6 @@
         (call-interactively 'execute-extended-command)
       (select-window window nil))))
 
-(provide 'lex-minibuffer)
+(provide 'lh-minibuffer)
 
-;;; lex-minibuffer.el ends here
+;;; lh-minibuffer.el ends here

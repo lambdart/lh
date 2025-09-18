@@ -1,4 +1,4 @@
-;;; lex-files.el --- files related functions/commands -*- lexical-binding: t -*-
+;;; lh-files.el --- files related functions/commands -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart
@@ -150,6 +150,7 @@ prompt asking for additional ARGS - arguments."
      ;; default: call delete-file interactively
      (t (message "File does not exists")))))
 
-(provide 'lex-files)
 
-;;; lex-files.el ends here
+(provide 'lh-files)
+
+;;; lh-files.el ends here

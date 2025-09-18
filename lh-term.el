@@ -1,4 +1,4 @@
-;;; lex-term.el --- term mode related functions/commands -*- lexical-binding: t -*-
+;;; lh-term.el --- term mode related functions/commands -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart
@@ -136,6 +136,12 @@ Similar to how `quoted-insert' works in a regular buffer."
   (term-send-raw-string "\ex"))
 
 ;;;###autoload
+(defun term-send-C-x  ()
+  "Send CTRL-X."
+  (interactive)
+  (term-send-raw-string "\C-X"))
+
+;;;###autoload
 (defun term-setup-keystroke ()
   "Keystroke setup of `term-char-mode'.
 By default, the key bindings of `term-char-mode' conflict
@@ -146,7 +152,9 @@ with `term-raw-map', and binds some keystroke with `term-raw-map'."
     (define-key term-raw-map (read-kbd-macro key) nil))
   ;; bind `term-bind-key-alist' keys
   (dolist (element term-bind-key-alist)
-    (define-key term-raw-map (read-kbd-macro (car element)) (cdr element))))
+    (define-key term-raw-map
+                (read-kbd-macro (car element))
+                (cdr element))))
 
 ;;;###autoload
 (defun term-kill-buffer-hook ()
@@ -157,7 +165,7 @@ with `term-raw-map', and binds some keystroke with `term-raw-map'."
       (and process (term-kill-subjob)))))
 
 (defun term-uniq-name (name)
-  "Return term uniq NAME if the string name it's equal to 'term'."
+  "Return an unique NAME if the string name it's equal to \=term."
   (if (not (string-equal name "term")) name
     (let ((n 0)
           (regex (concat "^\*" name)))
@@ -192,6 +200,6 @@ Get shell from the SHELL environment variable directly."
         ;; switch to the term buffer
         (switch-to-buffer buffer)))))
 
-(provide 'lex-term)
+(provide 'lh-term)
 
-;;; lex-term.el ends here
+;;; lh-term.el ends here

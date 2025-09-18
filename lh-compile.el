@@ -104,9 +104,7 @@
                   (concat user-emacs-directory "site-lisp/") nil 'confirm))))
   ;; get files from directory
   (let ((files (directory-files dir t)))
-    ;; (loop) for each file in files, verify and compile
     (dolist (file files)
-      ;; if file extension is equal to .el, byte-compile
       (when (equal (file-name-extension file) "el")
         (byte-compile-file file)))))
 
@@ -125,6 +123,6 @@
     (dolist (dir libraries)
       (byte-compile-library dir))))
 
-(provide 'lex-compile)
+(provide 'lh-compile)
 
-;;; lex-compile.el ends here
+;;; lh-compile.el ends here

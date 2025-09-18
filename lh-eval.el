@@ -34,45 +34,42 @@
 ;;
 ;; This library provides a way to interact with the `command-history',
 ;; using the `minibuffer' (command prompt) directly, its a mistake to
-;; hide the lisp (elisp dialect) from its user, this simple approach
+;; hide the Lisp (elisp dialect) from its user, this simple approach
 ;; brings a lot of weariness of what is really goin' on inside your
-;; lisp machine.
+;; Lisp machine.
 ;;
 ;; 'Simple and powerful.'
 ;;
 ;;; Code:
 
+(require 'cl-seq)
 (require 'subr-x)
 
-(defun command-history-collection ()
+(defun eval-command-history-collection ()
   "Return \\[command-history] completion table (collection)."
-  (let ((size (length command-history))
-        (command nil)
-        (collection '()))
-    ;; get collection loop
-    (dotimes (i size)
-      (setq command (prin1-to-string (nth i command-history)))
-      (when (not (or (string-empty-p command)
-                     ;; ignore closure commands
-                     (equal (string-match "^((" command) 0)))
-        (push command collection)))
-    ;; return collection
-    collection))
+  (cl-delete-duplicates
+   (cl-remove-if
+    (lambda (command)
+      (or (string-empty-p command)
+          (string-match-p "^((" command)))
+    (cl-mapcar
+     (lambda (command)
+       (prin1-to-string command))
+     command-history))))
 
 ;;;###autoload
 (defun eval-command-history ()
   "Eval previous command using `command-history'."
   (interactive)
   (let ((command
-         (completing-read
-          "Eval: " (command-history-collection) nil 'confirm "(" `(command-history))))
-    ;; necessary?
-    (save-restriction
-      ;; save point
-      (push-mark (point))
-      ;; read and eval the command
+         (completing-read "Eval: "
+                          (eval-command-history-collection)
+                          nil
+                          'confirm
+                          "("
+                          `(command-history))))
+    (save-mark-and-excursion
       (eval (read command)))))
 
-(provide 'lex-eval)
-
-;;; lex-eval.el ends here
+(provide 'lh-eval)
+;;; lh-eval.el ends here
