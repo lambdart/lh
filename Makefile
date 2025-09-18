@@ -17,7 +17,7 @@ COMPILE  = -f batch-byte-compile
 
 # Autoload related variables
 AUTOLOAD_DIR  := "${PWD}"
-AUTOLOAD_FILE := "${PWD}/lex-autoloads.el"
+AUTOLOAD_FILE := "${PWD}/lh-autoloads.el"
 AUTOLOAD_EVAL := --eval '(make-directory-autoloads ${AUTOLOAD_DIR} ${AUTOLOAD_FILE})'
 
 # Expand the source code files

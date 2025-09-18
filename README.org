@@ -4,135 +4,72 @@
 #+DESCRIPTION: little hacks for vanilla Emacs
 #+PROPERTY: header-args :tangle no
 
-Libraries Extensions - little hacks for vanilla Emacs.
+Little Hacks for vanilla Emacs.
 
 * Introduction
 
-  An simple library that extends other libraries (mainly builtin ones) -
-  a place to put new functions to be evaluated -
-  little hacks to improve =Emacs (our lisp machine)= overall
-  usability keeping everything more organized, providing
-  a safe place to add new code/hacks.
-
-  The =Lex= is a abbreviation for =Libraries Extensions=.
+  A place to put small hacks to be evaluated -
+  to improve =Emacs (our lisp machine)= overall usability.
 
 * Overview
 
-  On =Emacs= every user also is a developer, we twist and extend
-  your programmable platform (=LISP MACHINE=) to meet our needs,
-  to automatize boring tasks, to become more productive -
-  using smart data transformations to quickly create new features,
-  analyse data and processes of interest, and more, much more!
+  On =Emacs= every user is also a developer, we twist and extend
+  the =LISP MACHINE= to meet our needs to become more productive
+  by creating new hacks easily.
 
-  This is probably a continuum for the =Emacs= user life spam,
-  =forever= an =user developer=, taking more and more control,
-  engaging our manipulative capabilities all day long.
-
-  So, that's why =Lex= was created to pull all this new functions
-  in a common place, outside of the ~init.el~ configuration file,
-  making easy to extend/reuse/modify the code that was already
-  written.
-
-  By definition the new procedures should be =little hacks=, i.e,
-  naturally small.
+  This is true for the entire life spam of the user,
+  =forever= an =developer=, taking more and more control,
+  engaging with the editor's capabilities all day long.
 
 * Version
 
-  - 0.0.4 Alpha
+  - 0.0.5 Alpha
 
 * Dependencies
 ** Elisp
-
-   - delsel
-   - files
-   - simple
-   - recentf
-   - completion
-   - replace
-   - compile
-   - cl-seq
-   - cl-macs
-   - subr-x
-
 ** Unix
-
    - mixer
    - scrot
    - slock
    - transset (compton)
 
 * Tested on
-
   - Emacs 26.3
   - Emacs 28.0.50
   - FreeBSD 12.1
 
 * Install
 ** Manually
-   Clone =Lex= repository to a arbitrary location:
+   Clone =lh= repository to a arbitrary location:
+   Compile and generate the lh-autoloads.el file.
 
    #+BEGIN_SRC sh
 
-   $ git clone https://github.com/lambdart/lex ~/.emacs.d/site-elisp/lex
+   [at-lh-root-directory]$ make all
 
    #+END_SRC
 
-   Compile and generate the lex-autoloads.el file.
-
-   #+BEGIN_SRC sh
-
-   [at-lex-root-directory]$ make all
-
-   #+END_SRC
-
-   Add =Lex= directory to =load-path= in your
+   Add =lh= directory to =load-path= in your
    Emacs initialization file (~init.el~) and load it.
 
    #+BEGIN_SRC emacs-lisp
 
    ;; add to load-path
-   (add-to-list 'load-path "/replace/me/to/lex/full/path")
+   (add-to-list 'load-path "/full/path/lh/")
 
-   ;; load lex basic features
-   (require 'lex-autoloads nil t)
+   ;; load lh basic features
+   (require 'lh-autoloads nil t)
 
    #+END_SRC
-
-   - Note: For a more dynamic approach, load one by one, for example:
-     - =M-x load-library RET lex-uu RET=
-     - =M-x load-library RET lex-load-path RET=
-     - ...
 
 * Customize
 
   * Note: To see all the options from =Emacs= directly, and to customize it,
-    just type: =M-x customize-group RET lex-uu RET=.
-
-  - =lex-opacity= :: The opacity value is a number/float from 0 to 1,
-    with zero being fully transparent and one (1 - 100%) being fully
-    opaque. Default: 0.9
-
-  - =lex-transset= :: Program name that lets the user set the
-    transparency on a window. Default: "transset"
-
-  - =lex-transset-options= :: Default options/switches for the
-    `lex-transset' program. Default: "-a"
-
-  - =lex-slock= :: X screen locker program. Default: "slock"
-
-  - =lex-scrot= :: Command line screen capture utility.
-     Default: "scrot"
-
-  - =lex-scrot-dir= :: The folder where captured screen images will be
-    saved. Default: ~/.emacs.d/scrot/
-
-  - =lex-mixer= :: Mixer program – to set soundcard mixer values.
-    Default: "mixer"
-
-  - =lex-mixer-factor= :: Volume up/down factor. Default: 5
+    just type: =M-x customize-group RET lh-uu RET=.
 
 * LICENSE
   MIT
+
 * EOF
   All things change in a dynamic environment.
   Your effort to remain what you are is what limits you.
