@@ -1,4 +1,4 @@
-;;; lex-compile.el --- compile related functions/commands -*- lexical-binding: t -*-
+;;; lh-compile.el --- compile related functions/commands -*- lexical-binding: t -*-
 ;;
 ;; Maintainer: lambdart
 ;; Version: 0.0.4 Alpha

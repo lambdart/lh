@@ -1,4 +1,4 @@
-;;; lex-buffer.el --- Buffer/Editing related functions -*- lexical-binding: t -*-
+;;; lh-buffer.el --- Buffer/Editing related functions -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart

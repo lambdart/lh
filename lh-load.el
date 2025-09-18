@@ -1,4 +1,4 @@
-;;; lex-load.el --- load and load-path related functions/commands -*- lexical-binding: t -*-
+;;; lh-load.el --- load and load-path related functions/commands -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart

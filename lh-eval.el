@@ -1,4 +1,4 @@
-;;; lex-eval.el --- eval extensions -*- lexical-binding: t -*-
+;;; lh-eval.el --- eval extensions -*- lexical-binding: t -*-
 ;;
 ;; Author: lambdart <lambdart@protonmail.com>
 ;; Maintainer: lambdart
